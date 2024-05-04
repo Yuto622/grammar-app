@@ -1,5 +1,6 @@
 let chunks = [];
 let mediaRecorder;
+let stream
 
 const startRecordButton = document.getElementById('start');
 const stopRecordButton = document.getElementById('stop');
@@ -12,8 +13,7 @@ const matchesContainer = document.getElementById('check-false');
 
 startRecordButton.addEventListener('click', async () => {
   try {
-    // const options = { mimeType: 'audio/flac' }
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder = new MediaRecorder(stream);
 
     mediaRecorder.addEventListener('dataavailable', (event) => {
@@ -39,10 +39,12 @@ stopRecordButton.addEventListener('click', () => {
   waitCheckGrammar.style.display = 'flex'
   mediaRecorder.stop();
 
+
   mediaRecorder.addEventListener('stop', () => {
     const recordedBlob = new Blob(chunks, { type: 'audio/wav' });
     const formData = new FormData();
     formData.append('audio_file', recordedBlob, 'recorded_audio.wav');
+    stream.getTracks().forEach(track => track.stop());
     fetch('/recognize-speech', {
       method: 'POST',
       body: formData,
