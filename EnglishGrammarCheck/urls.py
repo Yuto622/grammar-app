@@ -25,4 +25,5 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('', index, name='index'),
     path('recognize-speech', homes.views.recognize_speech, name='recognize_speech'),
+    path('users/', include('users.urls')),
 ]

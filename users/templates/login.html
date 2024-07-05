@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+
+{% block content %}
+  <div class="bg-gray-200 w-full min-h-screen flex items-center justify-center">
+    <div class="w-full py-8">
+      <div class="bg-white max-w-sm mt-8 mx-auto md:px-16 md:py-8 p-2 rounded-lg shadow-2xl">
+        <h2 class="text-center text-2xl font-bold tracking-wide text-gray-800">Login</h2>
+        <p class="text-center text-sm text-gray-600 mt-2">Already have an account? <a href="#" class="text-blue-600 hover:text-blue-700 hover:underline" title="Sign In">Sign in here</a></p>
+        <form class="my-8 text-sm">
+          <div class="flex flex-col my-4">
+            <label for="email" class="text-gray-700">Email Address</label>
+            <input type="email" name="email" id="email" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Email">
+          </div>
+          <div class="flex flex-col my-4">
+            <label for="password" class="text-gray-700">Password</label>
+            <div class="relative flex items-center mt-2">
+              <input name="password" id="password" class="flex-1 p-2 pr-10 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Password" type="password">
+            </div>
+          </div>
+          <div class="my-4 flex items-center justify-center space-x-4">
+            <button class="w-full bg-blue-600 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase mt-6">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
