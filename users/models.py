@@ -1,25 +1,23 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
-from django.core.exceptions import ValidationError
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+from .managers import CustomUserManager
 
 
-class UserProfile(models.Model):
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_("email address"), unique=True)
+    is_active = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(default=timezone.now)
+    username = models.CharField(_("username"), max_length=150)
+    groups = None
+    is_superuser = None
 
-    def clean(self):
-        # Custom validation for username
-        if self.username and self.username.lower() == 'admin':
-            raise ValidationError('Username "admin" is not allowed.')
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ['username']
 
-        # Custom validation for password length
-        if self.password and len(self.password) < 8:
-            raise ValidationError('Password must be at least 8 characters long.')
-
-    def save(self, *args, **kwargs):
-        # Call full_clean to ensure all validations are applied before saving
-        self.full_clean()
-        super().save(*args, **kwargs)
+    objects = CustomUserManager()
 
     def __str__(self):
-        return self.username
+        return self.email
