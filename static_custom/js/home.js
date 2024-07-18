@@ -59,22 +59,16 @@ stopRecordButton.addEventListener('click', () => {
         recordedAudio.src = URL.createObjectURL(recordedBlob);
         recordedAudio.style.display = 'block';
         const dataMatches = data.match
+        const error = data.error_count
         matchesContainer.innerHTML = ''
-        if (dataMatches.length > 0) {
+        console.log(dataMatches)
+        console.log(error)
+        if (error > 0) {
           titleValueCheck.innerHTML = 'Grammar mistakes found:'
-          dataMatches.forEach(match => {
-            const replacements = match.replacements.join(', ');
-            const message = match.message;
-
-            const matchDiv = document.createElement('div');
-            matchDiv.classList.add('border', 'border-gray-200', 'rounded-lg', 'shadow-lg', 'p-3', 'mb-2');
-
-            matchDiv.innerHTML = `<strong>${replacements}</strong> - ${message}`
-
-            if (matchesContainer) {
-              matchesContainer.appendChild(matchDiv);
-            }
-          });
+          const matchDiv = document.createElement('div');
+          matchDiv.classList.add('border', 'border-gray-200', 'rounded-lg', 'shadow-lg', 'px-2', 'py-5', 'mb-2');
+          matchDiv.innerHTML = `<pre>${dataMatches}</pre>`
+          matchesContainer.appendChild(matchDiv)
         } else {
           titleValueCheck.innerHTML = 'No grammar mistakes found.'
         }

@@ -13,6 +13,36 @@
 
 <body class="bg-gray-50">
 <div class="container mx-auto mt-4 px-2 md:px-5">
+  {% if user.is_authenticated %}
+    <div class="2xl:container 2xl:mx-auto mb-10">
+    <div class="bg-white rounded shadow-lg py-5 px-7">
+      <nav class="flex justify-between">
+        <div class="flex items-center space-x-3 lg:pr-16 pr-6">
+          <a href="/">
+            <h2 class="font-normal text-2xl leading-6 text-gray-800">EnglishGrammarCheck</h2>
+          </a>
+        </div>
+        <div class=" flex space-x-5 justify-center items-center pl-2">
+          <div>
+            <a class="text-slate-400 hover:text-slate-500 dark:hover:text-slate-300" href="/charts">
+              <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+                <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1zm1 12h2V2h-2zm-3 0V7H7v7zm-5 0v-3H2v3z"/>
+              </svg>
+            </a>
+          </div>
+          <div>
+            <a class="text-slate-400 hover:text-slate-500 dark:hover:text-slate-300" href="{% url 'sign_out' %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  {% endif %}
   {% block content %}
   {% endblock content %}
 </div>

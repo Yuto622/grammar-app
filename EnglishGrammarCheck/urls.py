@@ -26,4 +26,5 @@ urlpatterns = [
     path('', index, name='index'),
     path('recognize-speech', homes.views.recognize_speech, name='recognize_speech'),
     path('users/', include('users.urls')),
+    path('charts/', include('charts.urls')),
 ]
