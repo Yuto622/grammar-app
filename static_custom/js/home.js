@@ -66,8 +66,8 @@ stopRecordButton.addEventListener('click', () => {
         if (error > 0) {
           titleValueCheck.innerHTML = 'Grammar mistakes found:'
           const matchDiv = document.createElement('div');
-          matchDiv.classList.add('border', 'border-gray-200', 'rounded-lg', 'shadow-lg', 'px-2', 'py-5', 'mb-2');
-          matchDiv.innerHTML = `<pre>${dataMatches}</pre>`
+          matchDiv.classList.add('border', 'border-gray-200', 'rounded-lg', 'shadow-lg', 'px-2', 'py-5', 'mb-10',);
+          matchDiv.innerHTML = `<pre class="whitespace-break-spaces">${dataMatches}</pre>`
           matchesContainer.appendChild(matchDiv)
         } else {
           titleValueCheck.innerHTML = 'No grammar mistakes found.'
